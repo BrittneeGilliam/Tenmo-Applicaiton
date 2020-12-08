@@ -1,0 +1,7 @@
+App.java - main class 
+        could be split up into 
+        1)User class
+        2)Account class
+        3)Transfer class - which could be send/receive
+        4) Tyler - two methods at the bottom of app.java
+        little bit of code in sendbucks method 

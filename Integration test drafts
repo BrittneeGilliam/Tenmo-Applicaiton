@@ -1,0 +1,39 @@
+Integration test drafts
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
+public class JDBCUserDAOTests {
+
+private UserDAO dao;
+private JdbcTemplate jdbcTemplate;
+
+//List all users
+@Test
+public void listUsers_Should_ReturnAllUsers() {
+//Arrange
+//add new user 
+String insertUser = "INSERT INTO users (user_id, user_name) " +
+        						"VALUES (?, ?)";
+    
+ Users objectToInsert = new Users();
+        objectToInsert.setUserId(1);
+        objectToInsert.setUserName();
+
+    jdbcTemplate.update(insertUsers, objectToInsert.getUserId(), objectToInsert.getUserName();,
+
+//Act
+//Get all existing users
+    List<Users> users = dao.getAllUsers(1);
+        
+//Assert
+        Assert.assertNotNull(Users);
+        assertEquals(1,Users.size());
+    }
+}

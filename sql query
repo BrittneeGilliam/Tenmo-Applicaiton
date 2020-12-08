@@ -1,0 +1,54 @@
+package com.techelevator.tenmo.dao;
+
+
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+
+import com.techelevator.tenmo.dao.*;
+import com.techelevator.tenmo.model.Transfer;
+
+@Component
+public class JDBCTransferDAO implements TransferDAO { // dont understand why this is throwing an error BSG
+	
+	private JdbcTemplate jdbcTemplate;
+	
+    public JDBCTransferDAO(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+
+@Override
+//getting errors on JdbcTemplate calls and I don't know why BSG
+//reading cannot make a static reference to the non-static method update(string,object) from the type JDBCTemplate
+
+public Transfer createTransfer(int type, int status, int from, int to, double amount) {
+	   Transfer theTransfer = new Transfer();
+	   String sqlTheTransfer = "INSERT INTO transfers (transfer_type_id, transfer_status_id, account_from, account_to, amount) " +
+	                            "VALUES (?, ?, ?, ?, ?) ";
+	   JdbcTemplate.update(sqlTheTransfer, type, status, from, to, amount); // HELP ??
+
+	    String sqlReturnNewTransfer = "SELECT * " +
+	                                    "FROM transfers " + 
+	                                    "WHERE transfer_type_id = '"+type+"' " +
+	                                    "AND transfer_status_id = '"+status+"' " +
+	                                    "AND account_from = '"+from+"' AND account_to = '"+to+"' AND amount = '"+amount+"' ";
+	    SqlRowSet rowSet = JdbcTemplate.queryForRowSet(sqlReturnNewTransfer); // HELP ??
+	        if (rowSet.next()) {
+	            theTransfer = mapRowToTransfers(rowSet);
+	        }
+	        return theTransfer.getId();
+	 }
+	 
+	 //mapRowToTransfers method:
+	     private Transfer mapRowToTransfers(SqlRowSet results) {
+	        Transfer t = new Transfer();
+	        t.setTypeId(results.getInt("transfer_type_id"));
+	        t.setStatusId(results.getInt("transfer_status_id"));
+	        t.setAccountFrom(results.getInt("account_from"));
+	        t.setAccountTo(results.getInt("account_to"));
+	        t.setAmount(results.getDouble("amount"));
+	        return t;
+	    }

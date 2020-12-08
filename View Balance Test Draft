@@ -1,0 +1,17 @@
+//View Balance Test
+
+    @Test
+    public void viewBalance_Should_ReturnCurrentBalance() {
+    	int expectedAccountId = 0;
+    	SqlRowSet nextAccountId = jdbcTemplate.queryForRowSet("SELECT balance FROM accounts WHERE account_id = ?");
+		if (nextAccountId.next()) {
+			expectedAccountId = nextAccountId.getDouble(1000) + 1; 
+			//+1 because we are grabbing the next id before the method runs, 
+			//so this expected is 1 less than actual. The +1 reconciles the account_id
+		}
+    	
+    	double correctBalance = dao.viewBalance(1); 
+        		
+
+        assertEquals(correctBalance, expectedAccountId);
+    }

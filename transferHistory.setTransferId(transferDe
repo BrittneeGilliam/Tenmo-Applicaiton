@@ -1,0 +1,37 @@
+transferHistory.setTransferId(transferDetailId)
+	transferService.viewTransferDetailsByTransferId(transferHistory);
+
+
+UPDATE SQL Query for Send Bucks
+
+
+ public int updateTransfers(int transfer_id, int transfer_type_id, int transfer_status_id, int account_from, int account_to, double amount) {
+     Transfer theTransfer = new Transfer();
+     String sqltheTransfer = "INSERT INTO transfers (transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount) " +
+                            "VALUES (?, ?, ?, ?, ?, ?) ";
+    jdbcTemplate.update(sqltheTransfer, transferId, transferTypeId, transferStatusId, accountFrom, accountTo, amount);
+
+    String sqlReturnNewTransfer = "SELECT * " +
+                                    "FROM transfers " + 
+                                    "WHERE transfer_id = '"+transferId+"' AND transfer_type_id = '"+transferTypeId+"' " +
+                                    "AND transfer_status_id = '"+transferStatusId+"' + AND transfer_type_id = '"+transferTypeId+"' +
+                                    "AND account_from = '"+accountFrom+"' AND account_to = '"+accountTo+"' AND amount = '"+amount+"' ";
+    SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sqlReturnNewTransfer);
+        if (rowSet.next()) {
+            theTransfers = mapRowToTransfers(rowSet);
+        }
+        return theTransfer.getTransfer.getId();
+ }
+ 
+ mapRowToTransfers method:
+     private Transfers mapRowToTransfers(SqlRowSet results) {
+        Transfers t = new Transfers();
+        t.setTransferId(results.getInt("transfer_id"));
+        t.setTransferTypeId(results.getInt("transfer_type_id"));
+        t.setTransferTypeId(results.getInt("transfer_type_id"));
+        t.setTransferStatusId(results.getInt("transfer_status_id"));
+        t.setAccountFrom(results.getInt("account_from"));
+        t.setAccountTo(results.getInt("account_to));
+        t.setAccount(results.getDouble("account));
+        return t;
+    }

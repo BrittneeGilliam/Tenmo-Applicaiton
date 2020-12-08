@@ -1,0 +1,85 @@
+//completed balance method 
+Double balance = restTemplate.exchange(API_BASE_URL + "users/" + currentUser.getUser().getId() + "/balance",
+				HttpMethod.GET, entity, Double.class).getBody();
+
+                //For Transfer
+                //we need the balance from the user initiating √
+                //we need the initial balance for the person getting $ √
+                //we need to add to the person's balance after successful Transfer √
+                //we need to subtract from the giver's balance √
+                //and show a log 
+                //console should show: users id name √
+                //request ID of person and amount √
+
+private Scanner in;
+private Double initiateTransfer() {
+
+ HttpEntity entity = getEntity();
+ Double transfer = restTemplate.exchange(API_BASE_URL + "/balance" + current.User.getID(),
+    HTTPMethod.GET, entity, Double.class).getBody();
+
+    System.out.println("Your current balance is ");
+    return initiateTransfer;
+
+    System.out.println("Enter ID of user you are requesting from (0 to cancel): ");
+        return in.nextLine();
+
+    System.out.println("Enter amount: ");
+    String userInput = in.nextLine();
+    try {
+    double requestAmount = Double.valueOf(userInput);
+    if (requestAmount > 0 && requestAmount <= options.length) {
+				request = options[requestAmount - 1];
+    }
+    } catch (NumberFormatException e) {
+}
+	}
+		if (request == null) {
+			System.out.println("\n*** " + userInput + " is not a valid request amount ***\n");
+		}
+System.out.println("\n*** " + current.User.getID + is requesting + userInput ***\n");
+return request;
+}
+//Subtracting request amount from....
+public Double moneyShooter () {
+    money = lostMoney(initiateTransfer - request);
+    return lostMoney;
+    
+} 
+
+//Send TE Bucks
+private Double sendingTransfer() {
+
+ HttpEntity entity = getEntity();
+ Double beingGenerous = restTemplate.exchange(API_BASE_URL + "/balance" + current.User.getID(),
+    HTTPMethod.GET, entity, Double.class).getBody();
+
+    System.out.println("Your current balance is ");
+    return sendingTransfer;
+
+    System.out.println("Enter ID of user you are sending money to (0 to cancel): ");
+        return in.nextLine();
+
+    System.out.println("Enter amount: ");
+    String userInput = in.nextLine();
+    try {
+    double beingGenerousAmount = Double.valueOf(userInput);
+    if (beingGenerousAmount > 0 && beingGenerousAmount <= options.length) {
+				beingGenerous = options[beingGenerousAmount - 1];
+    }
+    } catch (NumberFormatException e) {
+}
+	}
+		if (beingGenerous == null) {
+			System.out.println("\n*** " + userInput + " is not a valid request amount ***\n");
+		}
+System.out.println("\n*** " + current.User.getID + is sending + userInput ***\n");
+return beingGenerous;
+
+
+
+//Adding sent amount to receiver 
+public Double iGotMoney() {
+    newMoney = accountResult(sendingTransfer + beingGenerous) 
+    return accountResult;
+}
